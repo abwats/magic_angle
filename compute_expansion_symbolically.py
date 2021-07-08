@@ -3,7 +3,7 @@
 # (2) the formal expansion of the numerator and denominator of v(alpha) using the formal expansion of psi^alpha (symbolically)
 # (3) the L2 norm of H1 Psi^8 (symbolically)
 # (4) calculates the roots of the numerator of the Fermi velocity (evaluated in floating point arithmetic from the symbolic formula) with and without error terms (polynomial root-finding)
-# (5) evaluates the truncated expansion of the Fermi velocity (evaluated in floating point arithmetic from the symbolic formula) at alpha = .646
+# (5) evaluates the truncated expansion of the Fermi velocity with worst case error terms (evaluated in floating point arithmetic from the symbolic formula) at alpha = .646
 # (6) generates Fig II.1 for the paper 
 
 import numpy as np
