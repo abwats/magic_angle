@@ -4,6 +4,7 @@
 # (3) the L2 norm of H1 Psi^8 (symbolically)
 # (4) calculates the roots of the numerator of the Fermi velocity (evaluated in floating point arithmetic from the symbolic formula) with and without error terms (polynomial root-finding)
 # (5) evaluates the truncated expansion of the Fermi velocity with worst case error terms (evaluated in floating point arithmetic from the symbolic formula) at alpha = .646
+# (6) evaluates the truncated expansion of the Fermi velocity with best case error terms (evaluated in floating point arithmetic from the symbolic formula) at alpha = .5
 # (6) generates Fig II.1 for the paper 
 
 import numpy as np
@@ -481,9 +482,13 @@ def numerator_bestcase(x):
     val = val - P.polyval(x,third_term)*(g-x)**(-2)
     return val
 
-# check value of numerator with worst-case error terms at specific value of alpha  
-test_alpha_1 = .646
+# check value of numerator with worst-case error terms at specific value of alpha
+test_alpha_1 = .61 #.646
 print("value of truncated Fermi velocity numerator series with worst-case error at "+str(test_alpha_1)+" is "+str(numerator_with_error(test_alpha_1)))
+
+# check value of numerator with best-case error terms at specific value of alpha
+test_alpha_2 = .57
+print("value of truncated Fermi velocity numerator series with best-case error at "+str(test_alpha_2)+" is "+str(numerator_bestcase(test_alpha_2)))
 
 # to generate figures for paper
 
@@ -513,11 +518,13 @@ plt.plot(X,0*X,c='k')
 plt.scatter(positive_real_roots_with_errors[0].real,[0],label=r"root of expansion of $v(\alpha)$ numerator w/ worst-case error at $\alpha = $"+str(np.around(positive_real_roots_with_errors[0].real,decimals=5)))#+" (5dp)")
 plt.scatter(positive_real_roots_numerator[0].real,[0],label=r"root of expansion of $v(\alpha)$ numerator at $\alpha = $"+str(np.around(positive_real_roots_numerator[0].real,decimals=5)))#+" (5dp)")
 plt.scatter(positive_real_roots_bestcase[0].real,[0],label=r"root of expansion of $v(\alpha)$ numerator w/ best-case error at $\alpha = $"+str(np.around(positive_real_roots_bestcase[0].real,decimals=5)))#+" (5dp)")
-plt.xlim([.5,.69])
+#plt.xlim([.5,.69])
+plt.xlim([.525,.65])
 plt.ylim([-.75,.75])
 plt.xlabel(r"$\alpha$")
 plt.ylabel(r"$v(\alpha)$")
 plt.legend()
 plt.scatter(test_alpha_1,0,c='k',marker='x',s=100)
+plt.scatter(test_alpha_2,0,c='k',marker='x',s=100)
 
 plt.show()
