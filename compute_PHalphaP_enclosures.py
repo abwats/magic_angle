@@ -323,6 +323,8 @@ largest_entry_of_H = np.zeros( (N_alphas) , dtype="complex" )
 largest_eigenvalue = np.zeros( (N_alphas) , dtype="complex" )
 
 for alpha_idx in range(N_alphas):
+    percent_done = np.around(100*alpha_idx/N_alphas,decimals=3)
+    print("alpha "+str(alpha_idx)+" of "+str(N_alphas)+", "+str(percent_done)+" percent done")
     # get alpha value
     alpha = alpha_grid[alpha_idx]
     # form matrix
